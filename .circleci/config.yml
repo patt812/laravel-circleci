@@ -21,8 +21,15 @@ jobs:
             - composer-v1-{{ checksum "composer.lock" }}
             - composer-v1-
       - run: composer install -n --prefer-dist
-      # - run: npm run prod
       - run: php artisan test
+      - save_cache:
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+      - save_cache:
+          keys:
+            - v1-deps-{{ checksum "package-lock.json" }}
+            paths:
+             - node_modules
 
 workflows:
   version: 2
