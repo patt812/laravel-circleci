@@ -12,8 +12,7 @@ jobs:
           command: sudo apt-get update && sudo apt-get install -y npm nodejs
       # - run: docker-php-ext-install pdo pdo_mysql
       - restore_cache:
-          keys:
-            v1-deps-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ checksum "package-lock.json" }}
             # - v1-deps-
       - run: sudo npm install --location=global npm && npm i
       - restore_cache:
