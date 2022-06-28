@@ -12,7 +12,8 @@ jobs:
           command: sudo apt-get update && sudo apt-get install -y npm nodejs
       # - run: docker-php-ext-install pdo pdo_mysql
       - restore_cache:
-          key: v1-deps-{{ checksum "package-lock.json" }}
+          key:
+            v1-deps-{{ checksum "package-lock.json" }}
             # - v1-deps-
       - run: sudo npm install --location=global npm && npm i
       - restore_cache:
@@ -26,8 +27,6 @@ jobs:
             - composer-v1-{{ checksum "composer.lock" }}
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.json" }}
-            paths:
-             - node_modules
 
 workflows:
   version: 2
