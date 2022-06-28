@@ -25,8 +25,7 @@ jobs:
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
       - save_cache:
-          keys:
-            - v1-deps-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ checksum "package-lock.json" }}
             paths:
              - node_modules
 
